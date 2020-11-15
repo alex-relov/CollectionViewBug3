@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="self"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             x:Class="CollectionViewBug3.MainPage">
+
+    <CollectionView ItemsSource="{Binding Items}" Header="{Binding}" IsGrouped="True" EmptyView="{Binding}">
+        
+        <CollectionView.HeaderTemplate>
+            <DataTemplate>
+                <StackLayout Padding="5">
+                    <Label HorizontalOptions="CenterAndExpand" Text="Header" FontSize="Title" />
+                </StackLayout>
+   
+            </DataTemplate>
+        </CollectionView.HeaderTemplate>
+        
+        <CollectionView.GroupHeaderTemplate>
+            <DataTemplate>
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Label Text="{Binding Name}" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="Subtitle" />
+                    <Button Text="+" Command="{Binding Path=BindingContext.AddRow, Source={Reference self}}" CommandParameter="{Binding}" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.GroupHeaderTemplate>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Label Padding="5" Text="{Binding}" />
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        <CollectionView.EmptyViewTemplate>
+            <DataTemplate>
+                <StackLayout>
+                    <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Text="Empty list" />
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.EmptyViewTemplate>
+    </CollectionView>
+
+</ContentPage>
